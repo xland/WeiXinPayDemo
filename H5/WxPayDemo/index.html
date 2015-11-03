@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+	<body style="text-align: center;">
+		<button id="payBtn" style="margin-top: 66px;">微信支付</button>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			var payChanel;
+			function getPayChanel() {
+				//设备信息加载完成，先获取微信的支付通道
+				plus.payment.getChannels(function(channels) {
+					for (var i in channels) {
+						if (channels[i].id == "wxpay") {
+							payChanel = channels[i];
+						}
+					}
+				}, function(e) {
+					alert("获取支付通道失败：" + e.message);
+				});
+			}
+			function payClick() {
+				//支付按钮点击事件
+				//为了演示这里并没有发送数据给服务端，订单所需数据都是在服务端生成的
+				mui.post("http://www.yourdomain.net/wp/Default.aspx", {}, function(data) {
+					console.log(JSON.stringify(data));
+					plus.payment.request(payChanel, data, function(result) {
+						alert(JSON.stringify(result));
+						alert("付费成功");
+					}, function(e) {
+						alert(JSON.stringify(e));
+						alert("付费失败");
+					});
+				});
+			}
+			mui.init();
+			mui.plusReady(function() {
+				getPayChanel();
+				document.getElementById("payBtn").addEventListener("tap", payClick)
+			});
+		</script>
+	</body>
+
+</html>
