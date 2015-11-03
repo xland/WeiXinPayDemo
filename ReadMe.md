@@ -82,7 +82,7 @@ mui.plusReady(function() {
 >其中mui.post回调函数的返回值，就是服务端返回的json字符串
 
 **其他说明：**
->开发者：liulun（blog：http://www.cnblogs.com/liulun）
+>开发者：liulun，blog：http://www.cnblogs.com/liulun
 
 >PHP的DEMO：https://github.com/dcloudio/H5P.Server
 
