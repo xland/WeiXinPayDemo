@@ -4,8 +4,12 @@
 > 本项目是DCloud微信支付C#.NET服务端的SDK和DEMO
  
 > WXPaySDK目录下是服务端的SDK（与微信服务交互的核心代码都在这里）
+
 > WXPaySDKDemo目录下服务端的DEMO
+
 > H5目录下是客户端的DEMO
+
+
 
 **使用方法：**
 ```
@@ -17,17 +21,27 @@ var orderId = "TS" + DateTime.Now.ToString("yyyyMMddhhmmssffff");
 var jsonStr = payment.Pay(100, orderId, "卖肉钱", "127.0.0.1");
 ```
 >构造函数的四个参数：
+
 >MchId：微信支付商户号（从微信发给你的邮件中获得的）
+
 >AppId：应用的APPID（微信发给你的邮件中也有这项内容，一般以wx开头，微信开放平台-管理中心-应用详情也可以看到这项内容）
+
 >ApiKey：这里是API密钥，不是Appsecret，这里最容易出错了！请务必注意！设置方法：微信商户平台(pay.weixin.qq.com)-->账户设置-->API安全-->密钥设置
+
 >NotifyUrl：支付成功之后微信回调页面地址
 
 >Pay方法的五个参数：
+
 >TotalFee：总金额，单位：分，不能为空
+
 >TradeNo：订单号，你自己定就好了，不要重复，不能为空
+
 >Des：订单描述，不能为空
+
 >ClientIp：客户端的IP地址，不能为空
+
 >FeeType：货币类型，默认是CNY，人民币
+
 >Pay方法返回的是一个JSON字符串，把这个JSON字符串返回给DCLOUD客户端即可
 
 >客户端的关键代码：
@@ -69,5 +83,7 @@ mui.plusReady(function() {
 
 **其他说明：**
 >开发者：liulun（blog：http://www.cnblogs.com/liulun）
+
 >PHP的DEMO：https://github.com/dcloudio/H5P.Server
+
 >有什么问题，欢迎在这里开issue，我会尽快回复
